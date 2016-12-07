@@ -1,0 +1,17 @@
+{
+  "name": "rpg_card_level_tracker",
+  "version": "2.0.0",
+  "description": "Made for the munchkin game, but also usable with any other rpg card game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Munchkin",
+    "RPG",
+    "card",
+    "stat"
+  ],
+  "author": "Aaron Endsley",
+  "license": "MIT"
+}
