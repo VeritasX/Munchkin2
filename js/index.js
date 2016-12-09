@@ -19,8 +19,8 @@ var munchkin=(function gameMaker (){
         strength:0,
         runAway:0
     });
-    const getUserName=(InputName, statObject)=>{
-        var name = inputName;
+    const getUserName=(inputName, statObject)=>{
+        const name = inputName;
         statObject.name = name;
     };
     const goUpALevel=(statObject)=>{
@@ -31,6 +31,18 @@ var munchkin=(function gameMaker (){
             statObject.level -=1;
         }
     };
+    const getMyCardAndtoHolding = (card, userDeck, deck)=>{
+        const userCard = card;
+        let sendToDeck;
+        for(let i = 0;i < deck.length; i++){
+            if(deck[i].id === userCard){
+                sendToDeck = deck[i];
+            }else{
+                console.log('didNotMatch');
+            }
+        }
+        userDeck.push(sendToDeck);
+    }
     return{
         createDeck:createDeck,
         moveItemsToDeck:moveItemsToDeck,
@@ -38,22 +50,29 @@ var munchkin=(function gameMaker (){
         initiateUserStatsNoLevel:initiateUserStatsNoLevel,
         goUpALevel:goUpALevel,
         goDownALevel:goDownALevel,
-        getUserName:getUserName
+        getUserName:getUserName,
+        getMyCardAndtoHolding:getMyCardAndtoHolding
     };
 })();
 var userStats = munchkin.initiateUserStats();
 var UserStatsNoLevel = munchkin.initiateUserStatsNoLevel();
 var deck = munchkin.createDeck();
+var userDeck= munchkin.createDeck();
+
 munchkin.goUpALevel(userStats);
 munchkin.goUpALevel(userStats);
-munchkin.getUserName('bob');
+munchkin.getUserName('bob', userStats);
 console.log(userStats);
+munchkin.moveItemsToDeck(deck,2,2,4,5,6,7);
+munchkin.moveItemsToDeck(deck,3,2,4,5,6,7);
 munchkin.moveItemsToDeck(deck,1,2,4,5,6,7);
-munchkin.moveItemsToDeck(deck,1,2,4,5,6,7);
-munchkin.moveItemsToDeck(deck,1,2,4,5,6,7);
-munchkin.moveItemsToDeck(deck,1,2,4,5,6,7);
-munchkin.moveItemsToDeck(deck,1,2,4,5,6,7);
+munchkin.moveItemsToDeck(deck,4,2,4,5,6,7);
+munchkin.moveItemsToDeck(deck,5,2,4,5,6,7);
 munchkin.goDownALevel(userStats);
+munchkin.getMyCardAndtoHolding(1, userDeck, deck);
+console.log(userDeck);
+
+
 console.log(userStats);
 console.log(UserStatsNoLevel);
 console.log(deck);
